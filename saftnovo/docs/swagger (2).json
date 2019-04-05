@@ -1,0 +1,221 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "CRUD - Atividade",
+    "description": "Treinamento 2019",
+    "termsOfService": "nullable",
+    "contact": {
+      "name": "Helisson Oliveira",
+      "email": "helissonomc@dcomp.ufs.br",
+      "url": "https://github.com/HelissonMag/CRUD----atividade"
+    },
+    "license": {
+      "name": "2019 © SOFTEAM",
+      "url": "http://softeam.com.br"
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/localhost:8000",
+  "paths": {
+    "/user": {
+      "get": {
+        "summary": "Retorna todas pessoas",
+        "description": "todas as pessoas em BD sao retornadas",
+        "tags": [
+          "TodosUsuarios"
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Funcionarios encontrados"
+          },
+          "401": {
+            "description": "Fail achar users"
+          }
+        }
+      },
+      "post": {
+        "summary": "criar",
+        "description": "criar uma nova pessoa em BD",
+        "tags": [
+          "criarUser"
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuario criado",
+            "schema": {
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "jose"
+                },
+                "cpf": {
+                  "type": "number",
+                  "example": 83225514
+                },
+                "telefone": {
+                  "type": "number",
+                  "example": 7592921575
+                },
+                "cep": {
+                  "type": "string",
+                  "example": 4444100
+                },
+                "numero": {
+                  "type": "number",
+                  "example": 295
+                },
+                "complemento": {
+                  "type": "string",
+                  "example": "rua"
+                }
+              },
+              "required": [
+                "cpf",
+                "nome"
+              ]
+            }
+          },
+          "401": {
+            "description": "Fail criar user"
+          }
+        }
+      }
+    },
+    "/user/{cpf}": {
+      "get": {
+        "summary": "retorna usuario pelo",
+        "tags": [
+          "oneUser"
+        ],
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "path",
+            "description": "cpf da pessoa desejada",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "usuario encontrado"
+          },
+          "401": {
+            "description": "usuario nao encontrado"
+          },
+          "404": {
+            "description": "fail ao encontrar usuario!"
+          }
+        }
+      },
+      "put": {
+        "summary": "update de usuario",
+        "tags": [
+          "updat"
+        ],
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "path",
+            "required": true,
+            "type": "number",
+            "format": "cpf",
+            "description": "cpf do usuario"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "usuario atualizado",
+            "schema": {
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Funcionario Teste"
+                },
+                "cpf": {
+                  "type": "number",
+                  "example": 65484596257
+                },
+                "telefone": {
+                  "type": "number",
+                  "example": 79984569874
+                }
+              },
+              "required": [
+                "cpf"
+              ]
+            }
+          },
+          "401": {
+            "description": "fail user"
+          }
+        }
+      },
+      "delete": {
+        "summary": "deleta funcionario",
+        "tags": [
+          "removerUser"
+        ],
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "path",
+            "required": true,
+            "type": "number",
+            "format": "cpf",
+            "description": "cpf do usuario a ser deletado"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "usuario foi excluido"
+          },
+          "401": {
+            "description": "usuario nao foi encontrado"
+          },
+          "404": {
+            "description": "fail excluir user"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Func": {
+      "type": "object",
+      "required": [
+        "cpf"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Funcionario Teste"
+        },
+        "cpf": {
+          "type": "number",
+          "example": 25845684
+        },
+        "telefone": {
+          "type": "number",
+          "example": 799888788
+        },
+        "cep": {
+          "type": "string",
+          "example": 444000
+        },
+        "numero": {
+          "type": "number",
+          "example": 150
+        },
+        "complemento": {
+          "type": "string",
+          "example": "rua"
+        }
+      }
+    }
+  }
+}
